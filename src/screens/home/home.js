@@ -5,7 +5,7 @@ const HomeScreen = () => {
     return (
         <View style={{ flex: 1 }}>
             <Text>
-                Home
+                Home2
             </Text>
         </View>
     )
