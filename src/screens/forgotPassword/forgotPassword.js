@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const HomeScreen = () => {
+const ForgotPasswordScreen = () => {
     return (
         <View style={{ flex: 1 }}>
             <Text>
-                Home
+                Forgot Password
             </Text>
         </View>
     )
 };
 
-export default HomeScreen;
+export default ForgotPasswordScreen;

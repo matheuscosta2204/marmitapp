@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const HomeScreen = () => {
+const RegisterScreen = () => {
     return (
         <View style={{ flex: 1 }}>
             <Text>
-                Home
+                Register
             </Text>
         </View>
     )
 };
 
-export default HomeScreen;
+export default RegisterScreen;
