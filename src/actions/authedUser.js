@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
-import { AsyncStorage } from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
@@ -15,13 +15,7 @@ const api = 'https://marmitapp-admin.herokuapp.com'
 
 // LOAD USER
 export const loadUser = () => async dispatch => {
-    let token = null;
-
-    try {
-        token = await AsyncStorage.getItem('token');
-    } catch {
-        token = null;
-    }
+    const token = await AsyncStorage.getItem('token');
 
     if(token) {
         setAuthToken(token);
@@ -32,7 +26,7 @@ export const loadUser = () => async dispatch => {
 
         dispatch({
             type: USER_LOADED,
-            payload: res.data
+            payload: { data: res.data, token }
         });
     } catch (err) {
         dispatch({
@@ -53,7 +47,7 @@ export const register = ({ email, name, password }) => async dispatch => {
 
     try {
         const res = await axios.post(`${api}/api/user`, body, config);
-
+        
         dispatch({
             type: REGISTER_SUCCESS,
             payload: res.data
@@ -90,7 +84,7 @@ export const login = (email, password) => async dispatch => {
             type: LOGIN_SUCCESS,
             payload: res.data
         });
-
+        
         dispatch(loadUser());
     } catch (err) {
         const errors = err.response.data.errors;

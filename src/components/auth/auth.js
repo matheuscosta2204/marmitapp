@@ -1,28 +1,44 @@
 import React, { useEffect } from 'react';
+import { View, Image } from 'react-native'
+import { connect } from 'react-redux';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import logo from '../../media/images/FullLogoVertical.png';
 
-const Auth = ({ navigation }) => {
-    _authenticate = async () => {
-        let isAuthenticated = false;
-        try {
-            isAuthenticated = await AsyncStorage.getItem('isAuthenticated');
-        } catch(err) {
-            console.log(err);
-        }
-
-        if(isAuthenticated) {
-            navigation.navigate('Home');
-        } else {
-            navigation.navigate('Login');
+const Auth = ({ loading, isAuthenticated, navigation }) => {
+    _authenticate = async () => { 
+        if(!loading) {
+            if(isAuthenticated) {
+                navigation.navigate('Home');
+            } else {
+                navigation.navigate('Login');
+            }
         }
     }
 
     useEffect(() => {
         _authenticate();
-    }, []);
-    
-    return (<></>);
+    }, [loading]);
+
+    return (
+        <View style={styles.container}>
+            <Image source={logo} />
+        </View>
+    );
 }
 
-export default Auth;
+function mapStateToProps({ auth }) {
+    return { 
+        isAuthenticated: auth.isAuthenticated,
+        loading: auth.loading
+    }
+}
+
+const styles = {
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+}
+
+export default connect(mapStateToProps)(Auth);

@@ -1,16 +1,8 @@
 import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from '../actions/authedUser';
 import AsyncStorage from '@react-native-community/async-storage';
 
-getToken = async () => {
-    try {
-        return await AsyncStorage.getItem('token');
-    } catch {
-        return null;
-    }
-}
-
 const initialState = {
-    token: getToken(),
+    token: null, // not possible initialize because of async way that AsyncStorage handle with local storage;
     isAuthenticated: null,
     loading: true,
     user: null
@@ -23,13 +15,14 @@ export default function auth (state = initialState, action) {
         case USER_LOADED:
             return {
                 ...state,
+                token: payload.token,
                 isAuthenticated: true,
                 loading: false,
-                user: payload
+                user: payload.data
             }
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
-            AsyncStorage.setItem('token', payload.token);
+            AsyncStorage.multiSet([['token', String(payload.token)], ['isAuthenticated', '1']]);
             return {
                 ...state,
                 ...payload,
@@ -40,7 +33,7 @@ export default function auth (state = initialState, action) {
         case AUTH_ERROR:
         case LOGIN_FAIL:
         case LOGOUT:
-            AsyncStorage.removeItem('token');
+            AsyncStorage.removeItem(['token', 'isAuthenticated']);
             return {
                 ...state,
                 token: null,

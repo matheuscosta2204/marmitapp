@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 import { Container, Content, Form, Item, Input, Label, Button, Text, View } from 'native-base';
+import { connect } from 'react-redux';
 
 import styles from './login.style';
 import logo from '../../media/images/IconLogo.png';
+import { login } from '../../actions/authedUser';
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation, login }) => {
 
-    const [formData, setFormData] = useState({ username: '', password: '' });
+    const [formData, setFormData] = useState({ email: '', password: '' });
 
-    const { username, password } = formData;
+    const { email, password } = formData;
 
     const _onChangeText = (name, value) => {
         setFormData({ ...formData, [name]: value });
     }
 
     const _login = () => {
-        console.log(formData);
+        login(email, password);
+        navigation.navigate('Home');
     }
     
     return (
@@ -25,11 +28,11 @@ const LoginScreen = ({ navigation }) => {
                 <Image source={logo} style={styles.imageLogo} />
                 <Form style={styles.form}>
                     <Item floatingLabel>
-                        <Label style={styles.label}>Username</Label>
+                        <Label style={styles.label}>Email</Label>
                         <Input 
-                            name="username"
-                            value={username} 
-                            onChangeText={value => _onChangeText("username", value)}
+                            name="email"
+                            value={email} 
+                            onChangeText={value => _onChangeText("email", value)}
                             style={styles.textInput} />
                     </Item>
                     <Item floatingLabel>
@@ -64,4 +67,4 @@ const LoginScreen = ({ navigation }) => {
     )
 }
 
-export default LoginScreen;
+export default connect(null, { login })(LoginScreen);

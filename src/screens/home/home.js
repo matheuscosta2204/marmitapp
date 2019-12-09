@@ -1,13 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Container, Content, Text } from 'native-base';
+import SearchBar from '../../components/ui/searchBar.js/searchBar';
 
 const HomeScreen = () => {
     return (
-        <View style={{ flex: 1 }}>
-            <Text>
-                Home
-            </Text>
-        </View>
+        <Container>
+            <SearchBar />
+            <Content>
+                <Text>Home</Text>
+            </Content>
+        </Container>
     )
 };
 
