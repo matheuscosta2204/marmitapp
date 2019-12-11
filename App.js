@@ -33,7 +33,6 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <StatusBar barStyle="light-content" backgroundColor="#c31212" />
       <Navigator />
     </Provider>
   );
