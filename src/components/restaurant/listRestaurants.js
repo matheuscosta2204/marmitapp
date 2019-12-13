@@ -20,6 +20,7 @@ const ListRestaurants = ({ restaurants, getRestaurants, loading }) => {
 
     return (
         <List 
+            keyExtractor={item => item._id}
             dataArray={restaurants}
             renderRow={_renderItem}
             onEndReached={getRestaurants}
