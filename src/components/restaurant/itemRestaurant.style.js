@@ -1,21 +1,18 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
     itemContainer: {
         height: 100,
-        borderRadius: 10,
-        padding: 10,
-        marginHorizontal: 15,
         marginVertical: 5,
-        elevation: 3
     },
     itemContent: {
-        flexDirection: 'row'
+        width: Dimensions.get("screen").width,
+        flexDirection: 'row',
+        justifyContent: "space-around",
     },
-    itemRightView: {
-        marginLeft: 20,
+    itemCenterView: {
         flexDirection: 'column',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     itemTitle: {
         fontSize: 16,
@@ -24,5 +21,9 @@ export default StyleSheet.create({
     itemSubtitle: {
         fontSize: 13,
         color: 'grey'
+    },
+    starIcon: {
+        padding: 20,
+        alignSelf: "center",
     }
 })
