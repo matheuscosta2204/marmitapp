@@ -1,17 +1,23 @@
 import React from 'react';
-import { View, Text } from 'native-base';
+import { Image } from 'react-native';
+import { View, Text, Card, CardItem, Thumbnail } from 'native-base';
 import styles from './menuItem.style';
 
-const MenuItem = ({ type, items }) => {
+const MenuItem = ({ type, items, icon }) => {
     return (
-        <View style={styles.itemsContainer}>
-            <Text style={styles.type}>{type}</Text>
-            <View style={{ borderLeftColor: "black", borderLeftWidth: 1, margin: 10, paddingLeft: 10 }}>
-                {items.map(item => (
-                    <Text style={styles.item}>{item}</Text>
-                ))}
-            </View>
-        </View>
+        <Card>
+            <CardItem>
+                <View style={styles.itemsContainer}>
+                    <Image source={icon} style={styles.icon} />
+                    <View style={styles.itemsContent}>
+                        <Text style={styles.type}>{type}</Text>
+                        {items.map(item => (
+                            <Text style={styles.item}>{item}</Text>
+                        ))}
+                    </View>
+                </View>            
+            </CardItem>
+        </Card>
     )
 }
 

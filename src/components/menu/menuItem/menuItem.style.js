@@ -4,17 +4,25 @@ export default StyleSheet.create({
     itemsContainer: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between"
+        justifyContent: "center"
+    },
+    itemsContent: {
+        width: Dimensions.get("screen").width*0.65,
+        flexDirection: "column",
+        padding: 20,
+    },
+    icon: {
+        width: Dimensions.get("screen").width*0.20,
+        height: 100,
+        resizeMode: "contain",
+        marginLeft: 10
     },
     type: {
-        textAlign: "right",
-        width: Dimensions.get("screen").width*0.25,
         fontSize: 18,
         fontWeight: "700"
     },
-    item: {
+    item: {        
         textAlign: "left",
-        width: Dimensions.get("screen").width*0.75,
         fontSize: 17
     }
 })

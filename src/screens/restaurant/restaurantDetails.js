@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, View, Thumbnail, Text } from 'native-base';
+import { Container, Content, View, Thumbnail, Text } from 'native-base';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -34,17 +34,19 @@ const RestaurantDetails = ({ navigation }) => {
     return (
         <Container>
             <HeaderBar title="Details" />
-            <View style={styles.content}>
-                <View style={styles.infoContent}>
-                    <View style={styles.titleContainer}>
-                        <Thumbnail large square source={{ uri: restaurant.logo }} />
-                        <Text style={styles.title}>{restaurant.name}</Text>
+            <Content>
+                <View style={styles.content}>
+                    <View style={styles.infoContent}>
+                        <View style={styles.titleContainer}>
+                            <Thumbnail large square source={{ uri: restaurant.logo }} />
+                            <Text style={styles.title}>{restaurant.name}</Text>
+                        </View>
+                        <Text style={styles.data}>{restaurant.address}</Text>
+                        <Text style={styles.data}>{restaurant.phone}</Text>
                     </View>
-                    <Text style={styles.data}>{restaurant.address}</Text>
-                    <Text style={styles.data}>{restaurant.phone}</Text>
+                    <Menu loading={loading} menu={menu}/>
                 </View>
-                <Menu loading={loading} menu={menu}/>
-            </View>
+            </Content>
         </Container>
     )
 }
