@@ -1,4 +1,4 @@
-import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from '../actions/authedUser';
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, FAVORITE_CHANGE_SUCCESS } from '../actions/authedUser';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const initialState = {
@@ -28,6 +28,14 @@ export default function auth (state = initialState, action) {
                 ...payload,
                 isAuthenticated: true,
                 loading: false
+            }
+        case FAVORITE_CHANGE_SUCCESS:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    favorites: payload.favorites
+                }
             }
         case REGISTER_FAIL:
         case AUTH_ERROR:

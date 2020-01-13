@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { ListItem, View, Text, Thumbnail } from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { connect } from 'react-redux';
 
 import { navigate } from '../../navigation/navigationService';
 import styles from './itemRestaurant.style';
 
-const ItemRestaurant = ({ restaurant }) => {
+import { favoriteChanges } from '../../actions/authedUser';
+
+const ItemRestaurant = ({ restaurant, favoriteChanges }) => {
 
     const [favorite, setFavorite] = useState(false);
 
@@ -14,6 +17,11 @@ const ItemRestaurant = ({ restaurant }) => {
 
     const starClicked = () => {
         // Call endpoint to save favorite changes
+        if(favorite) {
+            favoriteChanges(restaurant._id, "remove");
+        } else {
+            favoriteChanges(restaurant._id, "add");
+        }
         setFavorite(!favorite);
     }
     
@@ -33,4 +41,4 @@ const ItemRestaurant = ({ restaurant }) => {
     )
 };
 
-export default ItemRestaurant;
+export default connect(null, { favoriteChanges })(ItemRestaurant);

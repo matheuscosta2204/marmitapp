@@ -10,8 +10,9 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
+export const FAVORITE_CHANGE_SUCCESS = 'FAVORITE_CHANGE_SUCCESS';
 
-const api = 'https://marmitapp-admin.herokuapp.com'
+const api = 'https://marmitapp-admin.herokuapp.com';
 
 // LOAD USER
 export const loadUser = () => async dispatch => {
@@ -102,4 +103,32 @@ export const login = (email, password) => async dispatch => {
 // LOGOUT / CLEAR PROFILE
 export const logout = () => dispatch => {
     dispatch({ type: LOGOUT });
+}
+
+// HANDLE CHANGES USERS FAVORITES RESTAURANTS
+export const favoriteChanges = (restaurantId, type)  => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    const body = JSON.stringify({ restaurantId, type });
+
+    try {
+        const res = await axios.put(`${api}/api/users/favorites`, body, config);
+        
+        console.log(res.data);
+
+        dispatch({
+            type: FAVORITE_CHANGE_SUCCESS,
+            payload: { favorites: res.data }
+        })
+    } catch (err) {
+        const errors = err.response.data.errors;
+        
+        if(errors) {
+            errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+        }
+    }
 }
