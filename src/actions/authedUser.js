@@ -117,8 +117,6 @@ export const favoriteChanges = (restaurantId, type)  => async dispatch => {
 
     try {
         const res = await axios.put(`${api}/api/users/favorites`, body, config);
-        
-        console.log(res.data);
 
         dispatch({
             type: FAVORITE_CHANGE_SUCCESS,

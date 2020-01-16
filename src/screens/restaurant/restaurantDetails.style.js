@@ -21,7 +21,5 @@ export default StyleSheet.create({
     },
     infoContent: {
         padding: 10,
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
     },
 })

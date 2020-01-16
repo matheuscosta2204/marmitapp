@@ -11,8 +11,8 @@ const MenuItem = ({ type, items, icon }) => {
                     <Image source={icon} style={styles.icon} />
                     <View style={styles.itemsContent}>
                         <Text style={styles.type}>{type}</Text>
-                        {items.map(item => (
-                            <Text style={styles.item}>{item}</Text>
+                        {items.map((item, key) => (
+                            <Text key={key} style={styles.item}>{item}</Text>
                         ))}
                     </View>
                 </View>            

@@ -22,7 +22,7 @@ const RestaurantDetails = ({ navigation }) => {
     _getMenu = async () => {
         setLoading(true);
         try {
-            const newMenu = await axios.get(`${baseURL}/api/menu/restaurant/${restaurant._id}`); 
+            const newMenu = await axios.get(`${baseURL}/api/menu/restaurant/${restaurant._id}`);
             const dayMenu = newMenu.data.filter(menu => moment(menu.data).format('YYYY-mm-dd') === moment().format('YYYY-mm-dd'));
             setMenu(dayMenu[0]);
         } catch(err) {
@@ -33,7 +33,7 @@ const RestaurantDetails = ({ navigation }) => {
 
     return (
         <Container>
-            <HeaderBar title="Details" />
+            <HeaderBar title="Details" noBackButton />
             <Content>
                 <View style={styles.content}>
                     <View style={styles.infoContent}>

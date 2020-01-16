@@ -9,6 +9,8 @@ import SideDishesIcon from '../../media/images/sideDishesIcon.png';
 import SaladsIcon from '../../media/images/saladsIcon.png';
 import DessertsIcon from '../../media/images/dessertsIcon.png';
 
+import styles from './menuDetails.style';
+
 const MenuDetails = ({ loading, menu }) => {
     
     if(loading) {
@@ -25,7 +27,7 @@ const MenuDetails = ({ loading, menu }) => {
 
     return (
         <View>
-            <Text>Today's Menu</Text>
+            <Text style={styles.title}>Today's Menu</Text>
             <MenuItem type="Main Dishes" items={menu.mainDishes} icon={MainDishesIcon} />
             <MenuItem type="Side Dishes" items={menu.sideDishes} icon={SideDishesIcon} />
             <MenuItem type="Salads" items={menu.salads} icon={SaladsIcon} />

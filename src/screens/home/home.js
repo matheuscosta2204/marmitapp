@@ -3,7 +3,7 @@ import { Container } from 'native-base';
 import axios from 'axios';
 
 import Loader from '../../components/ui/loader/loader';
-import SearchBar from '../../components/ui/searchBar.js/searchBar';
+import SearchBar from '../../components/ui/searchBar/searchBar';
 import ListRestaurants from '../../components/restaurant/listRestaurants';
 
 const baseURL = 'https://marmitapp-admin.herokuapp.com';
