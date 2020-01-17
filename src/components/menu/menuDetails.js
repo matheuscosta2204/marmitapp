@@ -12,7 +12,7 @@ import DessertsIcon from '../../media/images/dessertsIcon.png';
 import styles from './menuDetails.style';
 
 const MenuDetails = ({ loading, menu }) => {
-    
+
     if(loading) {
         return <Loader loading={loading} />;
     }
@@ -20,13 +20,13 @@ const MenuDetails = ({ loading, menu }) => {
     if(Object.keys(menu).length <= 0) {
         return (
             <View>
-                <Text>There is not published menu for today yet!</Text>
+                <Text style={styles.title}>There is not published menu for today yet!</Text>
             </View>
         )
     }
 
     return (
-        <View>
+        <View style={styles.menuContainer}>
             <Text style={styles.title}>Today's Menu</Text>
             <MenuItem type="Main Dishes" items={menu.mainDishes} icon={MainDishesIcon} />
             <MenuItem type="Side Dishes" items={menu.sideDishes} icon={SideDishesIcon} />
