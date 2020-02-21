@@ -1,11 +1,18 @@
 import React from 'react';
-import { View, Text } from 'native-base';
+import { View, Text, Container, Content } from 'native-base';
+
+import HeaderBar from '../../components/ui/header/header';
 
 const Orders = () => {
     return (
-        <View>
-            <Text>Orders</Text>
-        </View>
+        <Container>
+            <HeaderBar title="Orders" backButton />
+            <Content>
+                <View>
+                    <Text>Orders</Text>
+                </View>
+            </Content>
+        </Container>
     )
 };
 

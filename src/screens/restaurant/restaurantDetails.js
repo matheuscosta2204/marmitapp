@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Content, View, Thumbnail, Text, Fab, Icon } from 'native-base';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import moment from 'moment';
-import { Linking, Image } from 'react-native';
 
 import HeaderBar from '../../components/ui/header/header';
 import styles from './restaurantDetails.style';
@@ -10,17 +10,16 @@ import Menu from '../../components/menu/menuDetails';
 
 const baseURL = 'https://marmitapp-admin.herokuapp.com';
 
-const RestaurantDetails = ({ navigation }) => {
+const RestaurantDetails = ({ restaurant, navigation }) => {
 
     const [loading, setLoading] = useState(true);
     const [menu, setMenu] = useState({});
-    const { restaurant } = navigation.state.params;
 
     useEffect(() => {
         _getMenu();
     }, [])
 
-    _getMenu = async () => {
+    const _getMenu = async () => {
         setLoading(true);
         try {
             const newMenu = await axios.get(`${baseURL}/api/menu/restaurant/${restaurant._id}`);
@@ -38,7 +37,7 @@ const RestaurantDetails = ({ navigation }) => {
 
     return (
         <Container>
-            <HeaderBar title="Details" noBackButton />
+            <HeaderBar title="Details" backButton orderButton />
             <Content>
                 <View style={styles.content}>
                     <View style={styles.infoContent}>
@@ -55,7 +54,7 @@ const RestaurantDetails = ({ navigation }) => {
             <Fab
                 style={{ backgroundColor: "#c31212" }}
                 position="bottomRight"
-                onPress={() => navigation.navigate("Order")}
+                onPress={() => navigation.navigate("NewOrder")}
             >
                 <Icon name="ios-add" style={{ fontSize: 40 }} />
             </Fab>
@@ -63,4 +62,10 @@ const RestaurantDetails = ({ navigation }) => {
     )
 }
 
-export default RestaurantDetails;
+function mapStateToProps({ restaurant }) {
+    return {
+        restaurant: restaurant.current
+    }
+}
+
+export default connect(mapStateToProps)(RestaurantDetails);

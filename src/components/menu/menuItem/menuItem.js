@@ -12,7 +12,7 @@ const MenuItem = ({ type, items, icon }) => {
                     <View style={styles.itemsContent}>
                         <Text style={styles.type}>{type}</Text>
                         {items.map((item, key) => (
-                            <Text key={key} style={styles.item}>{item}</Text>
+                            <Text key={key} style={styles.item}>{item.description}</Text>
                         ))}
                     </View>
                 </View>            

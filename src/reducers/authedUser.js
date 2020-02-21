@@ -5,7 +5,9 @@ const initialState = {
     token: null, // not possible initialize because of async way that AsyncStorage handle with local storage;
     isAuthenticated: null,
     loading: true,
-    user: null
+    user: {
+        favorites: []
+    }
 }
 
 export default function auth (state = initialState, action) {

@@ -9,12 +9,18 @@ import styles from './itemRestaurant.style';
 
 import { favoriteChanges } from '../../actions/authedUser';
 import { addFavorite, removeFavorite } from '../../actions/favorites';
+import { setCurrentRestaurant } from '../../actions/restaurant';
 
-const ItemRestaurant = ({ restaurant, favoriteChanges, favorites, addFavorite, removeFavorite }) => {
+const ItemRestaurant = ({ restaurant, favoriteChanges, favorites, addFavorite, removeFavorite, setCurrentRestaurant }) => {
 
     const [favorite, setFavorite] = useState(false);
 
     const iconName = `ios-star${favorite ? '' : '-outline'}`;
+
+    const goTo = to => {
+        setCurrentRestaurant(restaurant);
+        navigate(to);
+    }
 
     useEffect(() => {
         if(favorites.includes(restaurant._id)) {
@@ -38,7 +44,7 @@ const ItemRestaurant = ({ restaurant, favoriteChanges, favorites, addFavorite, r
     
     return (
         <ListItem style={styles.itemContainer}>
-            <TouchableOpacity style={styles.itemContent} onPress={() => navigate("RestaurantDetails", { restaurant })}>
+            <TouchableOpacity style={styles.itemContent} onPress={() => goTo("RestaurantDetails")}>
                 <Thumbnail square source={{ uri: restaurant.logo }} />
                 <View style={styles.itemCenterView}>
                     <Text numberOfLines={1} style={styles.itemTitle}>{restaurant.name}</Text>
@@ -58,4 +64,4 @@ function mapStateToProps({ auth }) {
     }
 }
 
-export default connect(mapStateToProps, { favoriteChanges, addFavorite, removeFavorite })(ItemRestaurant);
+export default connect(mapStateToProps, { favoriteChanges, addFavorite, removeFavorite, setCurrentRestaurant })(ItemRestaurant);

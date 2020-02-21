@@ -10,7 +10,6 @@ export default function favorites(state = initialState, action) {
         case ADD_FAVORITE:
             return [...state, payload.restaurant];
         case REMOVE_FAVORITE:
-            console.log(state.filter(favorite => favorite._id !== payload.id));
             return state.filter(favorite => favorite._id !== payload.id);
         default:
             return state;

@@ -26,7 +26,7 @@ const HomeScreen = () => {
         setShowLoading(showLoading);
         setLoading(true);
         try {
-            const newRestaurants = await axios.get(`${baseURL}/api/restaurant/filter/${searchQuery !== '' ? searchQuery+'/' : ''}${page}/5`); 
+            const newRestaurants = await axios.get(`${baseURL}/api/restaurant/filter/${searchQuery !== '' ? searchQuery+'/' : ''}${page}/5`);
             if(newRestaurants.data.length > 0) {
                 setRestaurants([...restaurants, ...newRestaurants.data ]);
                 setPage(page + 1);
