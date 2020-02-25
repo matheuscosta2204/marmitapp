@@ -8,9 +8,11 @@ import HeaderBar from '../../components/ui/header/header';
 import styles from './restaurantDetails.style';
 import Menu from '../../components/menu/menuDetails';
 
+import { loadRestaurantMenu } from '../../actions/restaurant';
+
 const baseURL = 'https://marmitapp-admin.herokuapp.com';
 
-const RestaurantDetails = ({ restaurant, navigation }) => {
+const RestaurantDetails = ({ restaurant, navigation, loadRestaurantMenu }) => {
 
     const [loading, setLoading] = useState(true);
     const [menu, setMenu] = useState({});
@@ -26,6 +28,7 @@ const RestaurantDetails = ({ restaurant, navigation }) => {
             if(newMenu.data.length > 0) {
                 const dayMenu = newMenu.data.filter(menu => moment(menu.data).format('YYYY-mm-dd') === moment().format('YYYY-mm-dd'));
                 setMenu(dayMenu[0]);
+                loadRestaurantMenu(dayMenu[0]);
             } else {
                 setMenu({});
             }
@@ -68,4 +71,4 @@ function mapStateToProps({ restaurant }) {
     }
 }
 
-export default connect(mapStateToProps)(RestaurantDetails);
+export default connect(mapStateToProps, { loadRestaurantMenu })(RestaurantDetails);

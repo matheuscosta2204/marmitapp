@@ -5,14 +5,27 @@ import { connect } from 'react-redux';
 import styles from './newOrder.style';
 import HeaderBar from '../../../components/ui/header/header';
 import ListMealOptions from '../../../components/mealOptions/listMealOptions';
+import Ingredients from '../../../components/ingredients/ingredients';
 
 import { loadMealOptions } from '../../../actions/restaurant';
 
-const NewOrder = ({ restaurant, loadMealOptions, options }) => {
+const NewOrder = ({ restaurant, loadMealOptions, options, step }) => {
 
     useEffect(() => {
         loadMealOptions(restaurant._id);
-    }, []);    
+    }, []);
+
+    const renderStep = () => {
+        if (step === 'mealOptions') {
+            return <ListMealOptions options={options} />;
+        } else if (step === 'ingredients') {
+            return <Ingredients />;
+        } else if (step === 'review') {
+            return <View><Text>Review</Text></View>;
+        } else {
+            return <View><Text>Error</Text></View>;
+        }
+    }
 
     return (
         <Container>
@@ -25,17 +38,18 @@ const NewOrder = ({ restaurant, loadMealOptions, options }) => {
                             <Text style={styles.title}>{restaurant.name}</Text>
                         </View>
                     </View>
-                    <ListMealOptions options={options} />
+                    {renderStep()}
                 </View>
             </Content>
         </Container>
     )
 };
 
-function mapStateToProps({ restaurant }) {
+function mapStateToProps({ restaurant, order }) {
     return {
         restaurant: restaurant.current,
-        options: restaurant.mealOptions
+        options: restaurant.mealOptions,
+        step: order.step
     }
 }
 
