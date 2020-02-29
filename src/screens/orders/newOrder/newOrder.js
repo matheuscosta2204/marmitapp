@@ -6,6 +6,7 @@ import styles from './newOrder.style';
 import HeaderBar from '../../../components/ui/header/header';
 import ListMealOptions from '../../../components/mealOptions/listMealOptions';
 import Ingredients from '../../../components/ingredients/ingredients';
+import OrderIndicator from '../../../components/orderIndicator/orderIndicator';
 
 import { loadMealOptions } from '../../../actions/restaurant';
 
@@ -38,6 +39,7 @@ const NewOrder = ({ restaurant, loadMealOptions, options, step }) => {
                             <Text style={styles.title}>{restaurant.name}</Text>
                         </View>
                     </View>
+                    <OrderIndicator />
                     {renderStep()}
                 </View>
             </Content>

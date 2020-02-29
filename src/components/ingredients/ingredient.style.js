@@ -26,8 +26,14 @@ export default StyleSheet.create({
         fontWeight: "700"
     },
     itemContainer: {
+        width: Dimensions.get("screen").width*0.70,
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: "space-between",
+    },
+    descriptionContainer: {
+        width: Dimensions.get("screen").width*0.35,
+        flexDirection: "row",
         justifyContent: "space-between"
     },
     item: {        

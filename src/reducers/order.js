@@ -1,10 +1,8 @@
 import { 
     SET_ORDER_STEP, 
     SET_MEAL_OPTION, 
-    SET_MAIN_DISHES, 
-    SET_SIDE_DISHES, 
-    SET_SALADS, 
-    SET_DESSERTS, 
+    ADD_ITEM, 
+    REMOVE_ITEM, 
     CLEAR_ORDER 
 } from '../actions/order';
 
@@ -32,36 +30,22 @@ export default function order(state = initialState, action) {
                 ...state,
                 mealOption: payload
             }
-        case SET_MAIN_DISHES:
+        case ADD_ITEM:
             return {
                 ...state,
                 order: {
-                    ...order,
-                    mainDishes: [...order.mainDishes, payload]
+                    ...state.order,
+                    [payload.type]: [...state.order[payload.type], payload.item]
                 }
             }
-        case SET_SIDE_DISHES:
+        case REMOVE_ITEM:
+            let list = state.order[payload.type];
+            list.splice( list.indexOf(payload.item), 1 );
             return {
                 ...state,
                 order: {
-                    ...order,
-                    sideDishes: [...order.sideDishes, payload]
-                }
-            }
-        case SET_SALADS:
-            return {
-                ...state,
-                order: {
-                    ...order,
-                    salads: [...order.salads, payload]
-                }
-            }
-        case SET_DESSERTS:
-            return {
-                ...state,
-                order: {
-                    ...order,
-                    desserts: [...order.desserts, payload]
+                    ...state.order,
+                    [payload.type]: list
                 }
             }
         case CLEAR_ORDER:

@@ -1,9 +1,7 @@
 export const SET_ORDER_STEP = 'SET_ORDER_STEP';
 export const SET_MEAL_OPTION = 'SET_MEAL_OPTION';
-export const SET_MAIN_DISHES = 'SET_MAIN_DISHES';
-export const SET_SIDE_DISHES = 'SET_SIDE_DISHES';
-export const SET_SALADS = 'SET_SALADS';
-export const SET_DESSERTS = 'SET_DESSERTS';
+export const ADD_ITEM = 'ADD_ITEM';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const CLEAR_ORDER = 'CLEAR_ORDER';
 
 export const setOrderStep = (step) => dispatch => {
@@ -20,31 +18,17 @@ export const setMealOption = (option) => dispatch => {
     });
 }
 
-export const setMainDishes = (mainDish) => dispatch => {
+export const addItem = (type, item) => dispatch => {
     dispatch({
-        type: SET_MAIN_DISHES,
-        payload: mainDish
+        type: ADD_ITEM,
+        payload: { type, item }
     });
 }
 
-export const setSideDishes = (sideDish) => dispatch => {
+export const removeItem = (type, item) => dispatch => {
     dispatch({
-        type: SET_SIDE_DISHES,
-        payload: sideDish
-    });
-}
-
-export const setSalads = (salad) => dispatch => {
-    dispatch({
-        type: SET_SALADS,
-        payload: salad
-    });
-}
-
-export const setDesserts = (dessert) => dispatch => {
-    dispatch({
-        type: SET_DESSERTS,
-        payload: dessert
+        type: REMOVE_ITEM,
+        payload: { type, item }
     });
 }
 
