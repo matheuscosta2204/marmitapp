@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
-import { Container, Content, Form, Item, Input, Label, Button, Text, View } from 'native-base';
+import { Container, Content, Text, View } from 'native-base';
 import { connect } from 'react-redux';
+
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Fumi } from 'react-native-textinput-effects';
 
 import styles from './login.style';
 import logo from '../../media/images/IconLogo.png';
@@ -26,42 +29,50 @@ const LoginScreen = ({ navigation, login }) => {
         <Container style={styles.container}>
             <Content contentContainerStyle={styles.content}>
                 <Image source={logo} style={styles.imageLogo} />
-                <Form style={styles.form}>
-                    <Item floatingLabel>
-                        <Label style={styles.label}>Email</Label>
-                        <Input 
-                            name="email"
-                            value={email} 
-                            onChangeText={value => _onChangeText("email", value)}
-                            style={styles.textInput} />
-                    </Item>
-                    <Item floatingLabel>
-                        <Label style={styles.label}>Password</Label>
-                        <Input 
-                            name="password"
-                            value={password} 
-                            onChangeText={value => _onChangeText("password", value)}
-                            secureTextEntry
-                            style={styles.textInput} />
-                    </Item>
-                </Form>
-                <Button 
-                    full 
-                    style={{ ...styles.button, ...styles.loginButton}} 
+                <View style={styles.form}>
+                    <Fumi
+                        label={'Email'}
+                        iconClass={FontAwesomeIcon}
+                        iconName={'user'}
+                        iconColor={'#c31212'}
+                        iconSize={25}
+                        iconWidth={40}
+                        inputPadding={16}
+                        inputStyle={{ color: "#000" }}
+                        style={styles.textInput}
+                        name="email" 
+                        value={email} 
+                        onChangeText={value => _onChangeText("email", value)}
+                    />
+                    <Fumi
+                        label={'Password'}
+                        iconClass={FontAwesomeIcon}
+                        iconName={'lock'}
+                        iconColor={'#c31212'}
+                        iconSize={25}
+                        iconWidth={40}
+                        inputPadding={16}
+                        inputStyle={{ color: "#000" }}
+                        style={styles.textInput}
+                        name="password"
+                        value={password} 
+                        onChangeText={value => _onChangeText("password", value)}
+                        secureTextEntry
+                    />
+                </View>
+                <TouchableOpacity 
+                    style={styles.loginButton}
                     onPress={_login}>
-                    <Text>Login</Text>
-                </Button>
+                    <Text style={styles.buttonText}>LOGIN</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.forgotPass} onPress={() => navigation.navigate("ForgotPassword")}>
                     <Text style={styles.forgotPassText}>Forgot Password ?</Text>
                 </TouchableOpacity>
-                <Button 
-                    bordered 
-                    full 
-                    light 
-                    style={{ ...styles.button, ...styles.registerButton}}
+                <TouchableOpacity 
+                    style={styles.registerButton}
                     onPress={() => navigation.navigate("Register")}>
-                    <Text>Register</Text>
-                </Button>
+                    <Text style={{ ...styles.buttonText, ...styles.registerButtonText }}>REGISTER</Text>
+                </TouchableOpacity>
             </Content>
         </Container>
     )

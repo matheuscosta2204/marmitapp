@@ -23,19 +23,44 @@ export default StyleSheet.create({
         marginBottom: 10,
     },
     loginButton: {
-        backgroundColor: 'rgba(255, 255, 255, 0.3)'
+        width: "80%",
+        height: 60,
+        alignSelf: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: '#fff',
+        borderRadius: 30,
+        marginBottom: 30
+    },
+    buttonText: {
+        fontSize: 20,
+        fontWeight: "bold"
     },
     registerButton: {
-        borderColor: 'rgba(255, 255, 255, 0.5)',
-        color: 'rgba(255, 255, 255, 0.4)'
+        width: "80%",
+        height: 60,
+        alignSelf: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        borderWidth: 2,
+        borderColor: '#fff',
+        borderRadius: 30,
+        marginTop: 30
+    },
+    registerButtonText: {
+        color: "#fff"
     },
     forgotPass: {
-        alignSelf: 'flex-end'
+        alignSelf: 'flex-end',
+        marginRight: 30
     },
     forgotPassText: {
         color: '#fff'
     },
     textInput: {
-        color: '#fff'
+        borderRadius: 30, 
+        width: "85%", 
+        alignSelf: "center",
+        marginBottom: 20
     }
 });
