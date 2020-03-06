@@ -30,7 +30,8 @@ export default StyleSheet.create({
         justifyContent: "center",
         backgroundColor: '#fff',
         borderRadius: 30,
-        marginBottom: 30
+        marginBottom: 30,
+        elevation: 10
     },
     buttonText: {
         fontSize: 20,
