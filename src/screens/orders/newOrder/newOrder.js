@@ -6,6 +6,7 @@ import styles from './newOrder.style';
 import HeaderBar from '../../../components/ui/header/header';
 import ListMealOptions from '../../../components/mealOptions/listMealOptions';
 import Ingredients from '../../../components/ingredients/ingredients';
+import Review from '../../../components/orderReview/orderReview';
 import OrderIndicator from '../../../components/orderIndicator/orderIndicator';
 
 import { loadMealOptions } from '../../../actions/restaurant';
@@ -22,7 +23,7 @@ const NewOrder = ({ restaurant, loadMealOptions, options, step }) => {
         } else if (step === 'ingredients') {
             return <Ingredients />;
         } else if (step === 'review') {
-            return <View><Text>Review</Text></View>;
+            return <Review />;
         } else {
             return <View><Text>Error</Text></View>;
         }
