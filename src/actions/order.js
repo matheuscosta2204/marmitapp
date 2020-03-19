@@ -3,6 +3,7 @@ export const SET_MEAL_OPTION = 'SET_MEAL_OPTION';
 export const ADD_ITEM = 'ADD_ITEM';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const CLEAR_ORDER = 'CLEAR_ORDER';
+export const OBSERVATION_CHANGE = 'OBSERVATION_CHANGE';
 
 export const setOrderStep = (step) => dispatch => {
     dispatch({
@@ -30,6 +31,13 @@ export const removeItem = (type, item) => dispatch => {
         type: REMOVE_ITEM,
         payload: { type, item }
     });
+}
+
+export const observationChange = (text) => dispatch => {
+    dispatch({
+        type: OBSERVATION_CHANGE,
+        payload: text
+    })
 }
 
 export const clearOrder = () => dispatch => {

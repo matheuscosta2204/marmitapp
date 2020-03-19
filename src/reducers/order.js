@@ -3,7 +3,8 @@ import {
     SET_MEAL_OPTION, 
     ADD_ITEM, 
     REMOVE_ITEM, 
-    CLEAR_ORDER 
+    CLEAR_ORDER,
+    OBSERVATION_CHANGE 
 } from '../actions/order';
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
         desserts: [],
     },
     mealOption: null,
+    observation: '',
     step: 'mealOptions'
 };
 
@@ -47,6 +49,11 @@ export default function order(state = initialState, action) {
                     ...state.order,
                     [payload.type]: list
                 }
+            }
+        case OBSERVATION_CHANGE:
+            return {
+                ...state,
+                observation: payload
             }
         case CLEAR_ORDER:
             return initialState;

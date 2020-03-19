@@ -29,10 +29,10 @@ export default StyleSheet.create({
     descriptionContainer: {
         width: Dimensions.get("screen").width*0.50,
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
     },
     item: {        
-        textAlign: "left",
-        fontSize: 17
+        fontSize: 17,
+        marginHorizontal: 5
     }
 })
