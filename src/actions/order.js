@@ -12,24 +12,24 @@ export const setOrderStep = (step) => dispatch => {
     });
 }
 
-export const setMealOption = (option) => dispatch => {
+export const setMealOption = (option, price) => dispatch => {
     dispatch({
         type: SET_MEAL_OPTION,
-        payload: option
+        payload: { option, price }
     });
 }
 
-export const addItem = (type, item) => dispatch => {
+export const addItem = (type, item, price) => dispatch => {
     dispatch({
         type: ADD_ITEM,
-        payload: { type, item }
+        payload: { type, item, price }
     });
 }
 
-export const removeItem = (type, item) => dispatch => {
+export const removeItem = (type, item, price) => dispatch => {
     dispatch({
         type: REMOVE_ITEM,
-        payload: { type, item }
+        payload: { type, item, price }
     });
 }
 

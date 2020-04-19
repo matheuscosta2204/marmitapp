@@ -8,7 +8,7 @@ import { setOrderStep, setMealOption } from '../../actions/order';
 const ItemMealOption = ({ option, setMealOption, setOrderStep }) => {
 
     const _setMealOption = () => {
-        setMealOption(option.title);
+        setMealOption(option.title, option.price);
         setOrderStep('ingredients');
     }
 

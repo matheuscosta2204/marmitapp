@@ -15,6 +15,7 @@ const initialState = {
         desserts: [],
     },
     mealOption: null,
+    price: 0,
     observation: '',
     step: 'mealOptions'
 };
@@ -30,15 +31,17 @@ export default function order(state = initialState, action) {
         case SET_MEAL_OPTION:
             return {
                 ...state,
-                mealOption: payload
+                mealOption: payload.option,
+                price: payload.price
             }
         case ADD_ITEM:
             return {
                 ...state,
                 order: {
                     ...state.order,
-                    [payload.type]: [...state.order[payload.type], payload.item]
-                }
+                    [payload.type]: [...state.order[payload.type], payload.item],
+                },
+                price: state.price + payload.price
             }
         case REMOVE_ITEM:
             let list = state.order[payload.type];
@@ -48,7 +51,8 @@ export default function order(state = initialState, action) {
                 order: {
                     ...state.order,
                     [payload.type]: list
-                }
+                },
+                price: state.price - payload.price
             }
         case OBSERVATION_CHANGE:
             return {

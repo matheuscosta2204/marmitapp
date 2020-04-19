@@ -27,7 +27,7 @@ const Ingredient = ({ type, title, items, icon, addItem, removeItem, order }) =>
                                         <Text style={styles.item}>{item.description}</Text>
                                         {price > 0 && <Text>R$ {price}</Text>}
                                     </View>
-                                    <AddOrRemove value={qtd} add={() => addItem(type, item.description)} remove={() => removeItem(type, item.description)} />
+                                    <AddOrRemove value={qtd} add={() => addItem(type, item.description, price)} remove={() => removeItem(type, item.description, price)} />
                                 </View>
                             )
                         })}

@@ -1,8 +1,16 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    buttonContainer: {
-        marginTop: 10
+    priceText: {
+        marginTop: 10,
+        fontSize: 18, 
+        fontWeight: "bold"
+    },
+    textArea: { 
+        marginTop: 20 
+    },
+    obsLength: {
+        textAlign: "right"
     },
     loginButton: {
         width: "80%",

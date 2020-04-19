@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import { View, Text, Button } from 'native-base';
 import { connect } from 'react-redux';
 
@@ -20,9 +21,11 @@ const Ingredients = ({ menu, setOrderStep }) => {
             <IngredientsItem type="salads" title="Salads" items={menu.salads} icon={SaladsIcon} />
             <IngredientsItem type="desserts" title="Desserts" items={menu.desserts} icon={DessertsIcon} />
             <View style={styles.buttonContainer} >
-                <Button full onPress={() => setOrderStep('review')}>
-                    <Text>Finish Order</Text>
-                </Button>
+                <TouchableOpacity 
+                    style={styles.loginButton}
+                    onPress={() => setOrderStep('review')}>
+                    <Text style={styles.buttonText}>FINISH ORDER</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
