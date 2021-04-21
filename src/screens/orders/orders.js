@@ -6,7 +6,7 @@ import HeaderBar from '../../components/ui/header/header';
 const Orders = () => {
     return (
         <Container>
-            <HeaderBar title="Orders" backButton />
+            <HeaderBar title="Orders" />
             <Content>
                 <View>
                     <Text>Orders</Text>

@@ -11,6 +11,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const FAVORITE_CHANGE_SUCCESS = 'FAVORITE_CHANGE_SUCCESS';
+export const SAVE_ADDRESS = 'SAVE_ADDRESS';
 
 const api = 'https://marmitapp-admin.herokuapp.com';
 
@@ -19,7 +20,7 @@ export const loadUser = () => async dispatch => {
     const token = await AsyncStorage.getItem('token');
 
     if(token) {
-        setAuthToken(token);
+        setAuthToken(token); 
     }
 
     try {
@@ -37,14 +38,14 @@ export const loadUser = () => async dispatch => {
 }
 
 // REGISTER USER
-export const register = ({ email, name, password }) => async dispatch => {
+export const register = ({ email, name, password, celphone }) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
         }
     }
 
-    const body = JSON.stringify({ email, name, password });
+    const body = JSON.stringify({ email, name, password, celphone });
 
     try {
         const res = await axios.post(`${api}/api/users`, body, config);
@@ -122,6 +123,33 @@ export const favoriteChanges = (restaurantId, type)  => async dispatch => {
             type: FAVORITE_CHANGE_SUCCESS,
             payload: { favorites: res.data }
         })
+    } catch (err) {
+        const errors = err.response.data.errors;
+        
+        if(errors) {
+            errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+        }
+    }
+}
+
+export const saveAddress = ({ cep, street, number, neighborhood }) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    const body = JSON.stringify({ cep, street, number, neighborhood });
+
+    try {
+        const res = await axios.put(`${api}/api/users/address`, body, config);
+
+        dispatch({
+            type: SAVE_ADDRESS,
+            payload: { address: res.data }
+        })
+
+        dispatch(setAlert("address saved successfully", "success"));
     } catch (err) {
         const errors = err.response.data.errors;
         

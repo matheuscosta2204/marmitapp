@@ -22,4 +22,18 @@ export default StyleSheet.create({
     infoContent: {
         padding: 10,
     },
+    distance: {
+        marginLeft: 10,
+        padding: 5,
+        backgroundColor: "#c31212",
+        color: "#fff",
+        borderRadius: 10
+    },
+    distanceLimited: {
+        fontSize: 15,
+        fontWeight: "700",
+        color: "#c31212",
+        marginTop: 5,
+        marginLeft: 5
+    }
 })

@@ -4,7 +4,8 @@ import {
     ADD_ITEM, 
     REMOVE_ITEM, 
     CLEAR_ORDER,
-    OBSERVATION_CHANGE 
+    OBSERVATION_CHANGE,
+    PAYMENT_WAY_CHANGE
 } from '../actions/order';
 
 const initialState = {
@@ -17,7 +18,8 @@ const initialState = {
     mealOption: null,
     price: 0,
     observation: '',
-    step: 'mealOptions'
+    step: 'mealOptions',
+    paymentWay: ""
 };
 
 export default function order(state = initialState, action) {
@@ -32,7 +34,11 @@ export default function order(state = initialState, action) {
             return {
                 ...state,
                 mealOption: payload.option,
-                price: payload.price
+                price: payload.price,
+                mainDishes: payload.mainDishes,
+                sideDishes: payload.sideDishes,
+                salads: payload.salads,
+                deserts: payload.deserts
             }
         case ADD_ITEM:
             return {
@@ -58,6 +64,11 @@ export default function order(state = initialState, action) {
             return {
                 ...state,
                 observation: payload
+            }
+        case PAYMENT_WAY_CHANGE:
+            return {
+                ...state,
+                paymentWay: payload
             }
         case CLEAR_ORDER:
             return initialState;

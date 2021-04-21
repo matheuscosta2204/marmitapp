@@ -1,7 +1,8 @@
 import { SET_MODAL_VISIBLE } from '../actions/address';
 
 const initialState = {
-    modalVisible: false
+    modalVisible: false,
+    isNew: false
 };
 
 export default function address(state = initialState, action) {
@@ -10,7 +11,8 @@ export default function address(state = initialState, action) {
         case SET_MODAL_VISIBLE:
             return {
                 ...state,
-                modalVisible: payload
+                modalVisible: payload.modalVisible,
+                isNew: payload.isNew
             };
         default:
             return state;

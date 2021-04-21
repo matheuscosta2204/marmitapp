@@ -13,7 +13,7 @@ export default StyleSheet.create({
   },
   modalView: {
     width: width*0.85,
-    height: height*0.50,
+    height: height*0.60,
     backgroundColor: "white",
     borderRadius: 20,
     paddingHorizontal: 5,

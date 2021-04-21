@@ -18,12 +18,6 @@ const HomeStack = createStackNavigator({
             header: null
         }
     },
-    Orders: {
-        screen: OrdersScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
     NewOrder: {
         screen: NewOrderScreen,
         navigationOptions: {

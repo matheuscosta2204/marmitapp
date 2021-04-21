@@ -1,26 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, Card, CardItem, Radio } from 'native-base';
 import { connect } from 'react-redux';
 import styles from './orderAddress.style';
 import { setModalVisible } from '../../actions/address';
 
-const OrderAddress = ({ setModalVisible }) => {
+const OrderAddress = ({ setModalVisible, address }) => {
     return (
         <Card style={styles.container}>
             <CardItem style={styles.content}>
+                <Text style={styles.contentTitle}>Address</Text>
                 <View style={styles.item}>
                     <Radio
-                        onPress={() => alert("teste")}
-                        style={styles.radioButton}
-                        color={"#c31212"}
-                        selectedColor={"#c31212"}
-                        selected={true}
+                        onPress={() => alert("teste")} 
+                        style={styles.radioButton} 
+                        color={"#c31212"} 
+                        selectedColor={"#c31212"} 
+                        selected={true} 
                     />
-                    <Text style={{ }}>Current Address</Text>
+                    <View>
+                        <Text>{address.cep}, {address.street}, {address.number}</Text>
+                    </View>
                 </View>
                 <View style={styles.item}>
                     <Radio
-                        onPress={() => setModalVisible(true)}
+                        onPress={() => setModalVisible(true, true)}
                         style={styles.radioButton}
                         color={"#c31212"}
                         selectedColor={"#c31212"}
@@ -33,4 +36,10 @@ const OrderAddress = ({ setModalVisible }) => {
     )
 };
 
-export default connect(null, { setModalVisible })(OrderAddress);
+function mapStateToProps({ auth }) {
+    return {
+        address: auth.user.address
+    }
+}
+
+export default connect(mapStateToProps, { setModalVisible })(OrderAddress);

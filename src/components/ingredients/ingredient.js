@@ -20,14 +20,18 @@ const Ingredient = ({ type, title, items, icon, addItem, removeItem, order }) =>
                     <View style={styles.itemsContent}>
                         {items.map((item, key) => {
                             const price = item.value !== null ? item.value : 0;
-                            const qtd = order[type].filter(el => el === item.description).length;
+                            const qtd = order.order[type].filter(el => el === item.description).length;
                             return (
                                 <View style={styles.itemContainer} key={key}>
                                     <View style={styles.descriptionContainer}>
                                         <Text style={styles.item}>{item.description}</Text>
                                         {price > 0 && <Text>R$ {price}</Text>}
                                     </View>
-                                    <AddOrRemove value={qtd} add={() => addItem(type, item.description, price)} remove={() => removeItem(type, item.description, price)} />
+                                    <AddOrRemove 
+                                        limited={parseInt(order.order[type].length) < parseInt(order[type])} 
+                                        value={qtd} 
+                                        add={() => addItem(type, item.description, price)} 
+                                        remove={() => removeItem(type, item.description, price)} />
                                 </View>
                             )
                         })}
@@ -40,7 +44,7 @@ const Ingredient = ({ type, title, items, icon, addItem, removeItem, order }) =>
 
 function mapStateToProps ({ order }) {
     return {
-        order: order.order
+        order
     }
 }
 

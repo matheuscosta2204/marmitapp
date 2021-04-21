@@ -9,6 +9,7 @@ import SaladsIcon from '../../media/images/saladsIcon.png';
 import DessertsIcon from '../../media/images/dessertsIcon.png';
 
 import Address from '../orderAddres/orderAdress';
+import PaymentWays from '../orderPaymentWays/orderPaymentWays';
 import ItemReview from './itemReview';
 import styles from './orderReview.style';
 import { observationChange } from '../../actions/order';
@@ -33,6 +34,7 @@ const OrderReview = ({ mainDishes, sideDishes, salads, desserts, observation, ob
             <Text style={styles.obsLength}>Max: {150 - String(observation).replace(/ /g,'').length}</Text>
             <Text style={styles.priceText}>Price: R${price.toFixed(2)}</Text>
             <Address />
+            <PaymentWays />
             <TouchableOpacity 
                 style={styles.loginButton}
                 onPress={() => alert("Finishing Order")}>

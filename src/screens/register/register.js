@@ -10,9 +10,9 @@ import { register } from '../../actions/authedUser';
 import styles from './register.style';
 
 const RegisterScreen = ({ register, navigation }) => {
-    const [formData, setFormData] = useState({ email: '', password: '', name: '' });
+    const [formData, setFormData] = useState({ email: '', password: '', name: '', celphone: '' });
 
-    const { email, password, name } = formData;
+    const { email, password, name, celphone } = formData;
 
     const _onChangeText = (name, value) => {
         setFormData({ ...formData, [name]: value });
@@ -20,7 +20,7 @@ const RegisterScreen = ({ register, navigation }) => {
 
     const _register = () => {
         if(emailIsValid(email)) {
-            register({ email, password, name });
+            register({ email, password, name, celphone });
             navigation.navigate('Home');
         } else {
             Toast.show({
@@ -54,7 +54,7 @@ const RegisterScreen = ({ register, navigation }) => {
                     <Fumi
                         label={'Email'}
                         iconClass={FontAwesomeIcon}
-                        iconName={'user'}
+                        iconName={'envelope-o'}
                         iconColor={'#c31212'}
                         iconSize={25}
                         iconWidth={40}
@@ -64,6 +64,20 @@ const RegisterScreen = ({ register, navigation }) => {
                         name="email" 
                         value={email} 
                         onChangeText={value => _onChangeText("email", value)}
+                    />
+                    <Fumi
+                        label={'Celphone'}
+                        iconClass={FontAwesomeIcon}
+                        iconName={'phone'}
+                        iconColor={'#c31212'}
+                        iconSize={25}
+                        iconWidth={40}
+                        inputPadding={16}
+                        inputStyle={{ color: "#000" }}
+                        style={styles.textInput}
+                        name="celphone" 
+                        value={celphone} 
+                        onChangeText={value => _onChangeText("celphone", value)}
                     />
                     <Fumi
                         label={'Password'}
